@@ -9,10 +9,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Game {
+    public static final int MIN_PLAYERS_REQUIRED = 2;
+    public static final int MAX_PLAYERS_ALLOWED = 6;
     List<String> players = new ArrayList<>();
-    int[] places = new int[6];
-    int[] purses  = new int[6];
-    boolean[] inPenaltyBox  = new boolean[6];
+    int[] places = new int[MAX_PLAYERS_ALLOWED];
+    int[] purses  = new int[MAX_PLAYERS_ALLOWED];
+    boolean[] inPenaltyBox  = new boolean[MAX_PLAYERS_ALLOWED];
 
     Deque<String> popQuestions = new LinkedList<>();
     Deque<String> scienceQuestions = new LinkedList<>();
@@ -32,15 +34,18 @@ public class Game {
     }
 
     public boolean isPlayable() {
-        return (players.size() >= 2);
+        return (players.size() >= MIN_PLAYERS_REQUIRED);
     }
 
     public void add(String playerName) {
+        if (players.size() == MAX_PLAYERS_ALLOWED) {
+            throw new IllegalStateException("Max players allowed in game is " + MAX_PLAYERS_ALLOWED);
+        }
+        int newPlayerIndex = players.size();
         players.add(playerName);
-        int numPlayers = players.size();
-        places[numPlayers] = 0;
-        purses[numPlayers] = 0;
-        inPenaltyBox[numPlayers] = false;
+        places[newPlayerIndex] = 0;
+        purses[newPlayerIndex] = 0;
+        inPenaltyBox[newPlayerIndex] = false;
 
         logNewPlayerAdded(playerName);
     }

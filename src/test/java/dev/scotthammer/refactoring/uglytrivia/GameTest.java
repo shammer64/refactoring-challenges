@@ -45,4 +45,17 @@ class GameTest {
         assertTrue(aGame.isPlayable());
     }
 
+    @Test
+    void maxSixPlayersAllowedInGame() {
+        Game aGame = new Game();
+        aGame.add("Chet");
+        aGame.add("Sue");
+        aGame.add("Fred");
+        aGame.add("Wilma");
+        aGame.add("Barney");
+        aGame.add("Betty");
+        assertThrows(IllegalStateException.class, () -> aGame.add("Joy"));
+    }
+
+
 }
