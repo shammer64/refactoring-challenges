@@ -12,7 +12,6 @@ public class Game {
     public static final int MIN_PLAYERS_REQUIRED = 2;
     public static final int MAX_PLAYERS_ALLOWED = 6;
     List<Player> players = new ArrayList<>();
-    List<String> playerNames = new ArrayList<>();
     int[] places = new int[MAX_PLAYERS_ALLOWED];
     int[] purses  = new int[MAX_PLAYERS_ALLOWED];
     boolean[] inPenaltyBox  = new boolean[MAX_PLAYERS_ALLOWED];
@@ -46,7 +45,9 @@ public class Game {
         int newPlayerIndex = players.size();
         Player player = new Player(playerName);
         players.add(player);
-        playerNames.add(playerName);
+        if (currentPlayer == null) {
+            currentPlayer = player;
+        }
         places[newPlayerIndex] = 0;
         purses[newPlayerIndex] = 0;
         inPenaltyBox[newPlayerIndex] = false;
@@ -141,11 +142,11 @@ public class Game {
     }
 
     private void logCurrentPlayerLeavingPenaltyBox() {
-        System.out.println(playerNames.get(currentPlayerIndex) + " is getting out of the penalty box");
+        System.out.println(currentPlayer.getName() + " is getting out of the penalty box");
     }
 
     private void logCurrentPlayerRemainsInPenaltyBox() {
-        System.out.println(playerNames.get(currentPlayerIndex) + " is not getting out of the penalty box");
+        System.out.println(currentPlayer.getName() + " is not getting out of the penalty box");
     }
 
     private void logCurrentCategory() {
@@ -153,7 +154,7 @@ public class Game {
     }
 
     private void logCurrentPlayerLocation() {
-        System.out.println(playerNames.get(currentPlayerIndex)
+        System.out.println(currentPlayer.getName()
                 + "'s new location is "
                 + places[currentPlayerIndex]);
     }
@@ -163,11 +164,11 @@ public class Game {
     }
 
     private void logCurrentPlayerName() {
-        System.out.println(playerNames.get(currentPlayerIndex) + " is the current player");
+        System.out.println(currentPlayer.getName() + " is the current player");
     }
 
     private void logCurrentPlayerCoins() {
-        System.out.println(playerNames.get(currentPlayerIndex)
+        System.out.println(currentPlayer.getName()
                 + " now has "
                 + purses[currentPlayerIndex]
                 + " Gold Coins.");
@@ -184,7 +185,7 @@ public class Game {
 
     public boolean wrongAnswer(){
         System.out.println("Question was incorrectly answered");
-        System.out.println(playerNames.get(currentPlayerIndex)+ " was sent to the penalty box");
+        System.out.println(currentPlayer.getName() + " was sent to the penalty box");
         inPenaltyBox[currentPlayerIndex] = true;
 
         moveToNextPlayer();
