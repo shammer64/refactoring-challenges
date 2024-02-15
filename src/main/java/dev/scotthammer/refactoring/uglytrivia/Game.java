@@ -36,8 +36,6 @@ public class Game {
     }
 
     public void add(String playerName) {
-
-
         players.add(playerName);
         int numPlayers = players.size();
         places[numPlayers] = 0;
@@ -66,9 +64,7 @@ public class Game {
                 logCurrentPlayerRemainsInPenaltyBox();
                 isGettingOutOfPenaltyBox = false;
             }
-
         } else {
-
             places[currentPlayer] = places[currentPlayer] + roll;
             if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
@@ -76,7 +72,6 @@ public class Game {
             logCurrentCategory();
             askQuestion();
         }
-
     }
 
     private void askQuestion() {
@@ -119,11 +114,7 @@ public class Game {
                 moveToNextPlayer();
                 return true;
             }
-
-
-
         } else {
-
             System.out.println("Answer was corrent!!!!");
             purses[currentPlayer]++;
             logCurrentPlayerCoins();
