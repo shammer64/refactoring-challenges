@@ -11,8 +11,8 @@ import java.util.List;
 public class Game {
     public static final int MIN_PLAYERS_REQUIRED = 2;
     public static final int MAX_PLAYERS_ALLOWED = 6;
+    public static final int MAX_PLAYER_PLACE = 11;
     List<Player> players = new ArrayList<>();
-    int[] places = new int[MAX_PLAYERS_ALLOWED];
     int[] purses  = new int[MAX_PLAYERS_ALLOWED];
 
     Deque<String> popQuestions = new LinkedList<>();
@@ -47,7 +47,6 @@ public class Game {
         if (currentPlayer == null) {
             currentPlayer = player;
         }
-        places[newPlayerIndex] = 0;
         purses[newPlayerIndex] = 0;
 
         logNewPlayerAdded(playerName);
@@ -62,8 +61,9 @@ public class Game {
                 isGettingOutOfPenaltyBox = true;
 
                 logCurrentPlayerLeavingPenaltyBox();
-                places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
-                if (places[currentPlayerIndex] > 11) places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
+                addRollToPlace(roll);
+                if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
+                    resetPlace();
 
                 logCurrentPlayerLocation();
                 logCurrentCategory();
@@ -73,13 +73,22 @@ public class Game {
                 isGettingOutOfPenaltyBox = false;
             }
         } else {
-            places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
-            if (places[currentPlayerIndex] > 11) places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
+            addRollToPlace(roll);
+            if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
+                resetPlace();
 
             logCurrentPlayerLocation();
             logCurrentCategory();
             askQuestion();
         }
+    }
+
+    private void addRollToPlace(int roll) {
+        currentPlayer.setPlace(currentPlayer.getPlace() + roll);
+    }
+
+    private void resetPlace() {
+        currentPlayer.setPlace(currentPlayer.getPlace() - 12);
     }
 
     private void askQuestion() {
@@ -95,15 +104,15 @@ public class Game {
 
 
     private String currentCategory() {
-        if (places[currentPlayerIndex] == 0) return "Pop";
-        if (places[currentPlayerIndex] == 4) return "Pop";
-        if (places[currentPlayerIndex] == 8) return "Pop";
-        if (places[currentPlayerIndex] == 1) return "Science";
-        if (places[currentPlayerIndex] == 5) return "Science";
-        if (places[currentPlayerIndex] == 9) return "Science";
-        if (places[currentPlayerIndex] == 2) return "Sports";
-        if (places[currentPlayerIndex] == 6) return "Sports";
-        if (places[currentPlayerIndex] == 10) return "Sports";
+        if (currentPlayer.getPlace() == 0) return "Pop";
+        if (currentPlayer.getPlace() == 4) return "Pop";
+        if (currentPlayer.getPlace() == 8) return "Pop";
+        if (currentPlayer.getPlace() == 1) return "Science";
+        if (currentPlayer.getPlace() == 5) return "Science";
+        if (currentPlayer.getPlace() == 9) return "Science";
+        if (currentPlayer.getPlace() == 2) return "Sports";
+        if (currentPlayer.getPlace() == 6) return "Sports";
+        if (currentPlayer.getPlace() == 10) return "Sports";
         return "Rock";
     }
 
@@ -154,7 +163,7 @@ public class Game {
     private void logCurrentPlayerLocation() {
         System.out.println(currentPlayer.getName()
                 + "'s new location is "
-                + places[currentPlayerIndex]);
+                + currentPlayer.getPlace());
     }
 
     private void logCurrentRoll(int roll) {

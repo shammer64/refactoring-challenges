@@ -2,11 +2,18 @@ package dev.scotthammer.refactoring.uglytrivia;
 
 public class Player {
     private final String name;
-    boolean isInPenaltyBox;
 
+    private int place;
+
+    boolean isInPenaltyBox;
     public Player(String name) {
         this.name = name;
         isInPenaltyBox = false;
+        place = 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean isInPenaltyBox() {
@@ -17,7 +24,12 @@ public class Player {
         isInPenaltyBox = inPenaltyBox;
     }
 
-    public String getName() {
-        return name;
+    public int getPlace() {
+        return place;
     }
+
+    public void setPlace(int place) {
+        this.place = place;
+    }
+
 }
