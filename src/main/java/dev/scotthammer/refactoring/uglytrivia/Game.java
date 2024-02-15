@@ -147,8 +147,7 @@ public class Game {
     }
 
     private void moveToNextPlayer() {
-        currentPlayer++;
-        if (currentPlayer == players.size()) currentPlayer = 0;
+        currentPlayer = (currentPlayer + 1) % players.size();
     }
 
     public boolean wrongAnswer(){
