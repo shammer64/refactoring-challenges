@@ -4,18 +4,20 @@ package dev.scotthammer.refactoring.uglytrivia;
     License: GPLv3 https://github.com/jbrains/trivia/blob/master/LICENSE.txt
  */
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Game {
-    ArrayList<String> players = new ArrayList<>();
+    List<String> players = new ArrayList<>();
     int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
 
-    LinkedList<String> popQuestions = new LinkedList<>();
-    LinkedList<String> scienceQuestions = new LinkedList<>();
-    LinkedList<String> sportsQuestions = new LinkedList<>();
-    LinkedList<String> rockQuestions = new LinkedList<>();
+    Deque<String> popQuestions = new LinkedList<>();
+    Deque<String> scienceQuestions = new LinkedList<>();
+    Deque<String> sportsQuestions = new LinkedList<>();
+    Deque<String> rockQuestions = new LinkedList<>();
 
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
