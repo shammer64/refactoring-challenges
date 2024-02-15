@@ -23,7 +23,7 @@ public class Game {
     Player currentPlayer = null;
     boolean isGettingOutOfPenaltyBox;
 
-    public  Game(){
+    public Game(){
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast("Pop Question " + i);
             scienceQuestions.addLast("Science Question " + i);
@@ -55,12 +55,10 @@ public class Game {
         if (currentPlayer.isInPenaltyBox()) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
-
                 logCurrentPlayerLeavingPenaltyBox();
                 addRollToPlace(roll);
                 if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
                     resetPlace();
-
                 logCurrentPlayerLocation();
                 logCurrentCategory();
                 askQuestion();
@@ -72,7 +70,6 @@ public class Game {
             addRollToPlace(roll);
             if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
                 resetPlace();
-
             logCurrentPlayerLocation();
             logCurrentCategory();
             askQuestion();
@@ -118,11 +115,8 @@ public class Game {
                 logCorrectAnswer();
                 currentPlayer.incrementPurse();
                 logCurrentPlayerCoins();
-
-                boolean winner = didPlayerWin();
                 moveToNextPlayer();
-
-                return winner;
+                return didPlayerWin();
             } else {
                 moveToNextPlayer();
                 return true;
@@ -131,11 +125,8 @@ public class Game {
             logCorrectAnswer();
             currentPlayer.incrementPurse();
             logCurrentPlayerCoins();
-
-            boolean winner = didPlayerWin();
             moveToNextPlayer();
-
-            return winner;
+            return didPlayerWin();
         }
     }
 
