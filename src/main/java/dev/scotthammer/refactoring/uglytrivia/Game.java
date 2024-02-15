@@ -35,16 +35,16 @@ public class Game {
     }
 
     public boolean isPlayable() {
-        return (playerNames.size() >= MIN_PLAYERS_REQUIRED);
+        return (players.size() >= MIN_PLAYERS_REQUIRED);
     }
 
     public void add(String playerName) {
-        if (playerNames.size() == MAX_PLAYERS_ALLOWED) {
+        if (players.size() >= MAX_PLAYERS_ALLOWED) {
             throw new IllegalStateException("Max players allowed in game is " + MAX_PLAYERS_ALLOWED);
         }
+        int newPlayerIndex = players.size();
         Player player = new Player(playerName);
         players.add(player);
-        int newPlayerIndex = playerNames.size();
         playerNames.add(playerName);
         places[newPlayerIndex] = 0;
         purses[newPlayerIndex] = 0;
@@ -136,7 +136,7 @@ public class Game {
 
     private void logNewPlayerAdded(String playerName) {
         System.out.println(playerName + " was added");
-        System.out.println("They are player number " + playerNames.size());
+        System.out.println("They are player number " + players.size());
     }
 
     private void logCurrentPlayerLeavingPenaltyBox() {
@@ -177,7 +177,7 @@ public class Game {
     }
 
     private void moveToNextPlayer() {
-        currentPlayer = (currentPlayer + 1) % playerNames.size();
+        currentPlayer = (currentPlayer + 1) % players.size();
     }
 
     public boolean wrongAnswer(){
