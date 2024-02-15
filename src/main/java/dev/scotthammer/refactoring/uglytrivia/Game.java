@@ -36,23 +36,20 @@ public class Game {
     }
 
     public boolean isPlayable() {
-        return (howManyPlayers() >= 2);
+        return (players.size() >= 2);
     }
 
     public void add(String playerName) {
 
 
         players.add(playerName);
-        places[howManyPlayers()] = 0;
-        purses[howManyPlayers()] = 0;
-        inPenaltyBox[howManyPlayers()] = false;
+        int numPlayers = players.size();
+        places[numPlayers] = 0;
+        purses[numPlayers] = 0;
+        inPenaltyBox[numPlayers] = false;
 
         System.out.println(playerName + " was added");
         System.out.println("They are player number " + players.size());
-    }
-
-    public int howManyPlayers() {
-        return players.size();
     }
 
     public void roll(int roll) {
