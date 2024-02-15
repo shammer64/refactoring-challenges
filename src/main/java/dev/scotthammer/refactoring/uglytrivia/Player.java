@@ -3,13 +3,15 @@ package dev.scotthammer.refactoring.uglytrivia;
 public class Player {
     private final String name;
 
-    private int place;
+    private int purse;
 
+    private int place;
     boolean isInPenaltyBox;
     public Player(String name) {
         this.name = name;
         isInPenaltyBox = false;
         place = 0;
+        purse = 0;
     }
 
     public String getName() {
@@ -32,4 +34,11 @@ public class Player {
         this.place = place;
     }
 
+    public int getPurse() {
+        return purse;
+    }
+
+    public void incrementPurse() {
+        purse++;
+    }
 }

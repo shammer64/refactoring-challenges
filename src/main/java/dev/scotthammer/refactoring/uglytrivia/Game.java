@@ -13,7 +13,6 @@ public class Game {
     public static final int MAX_PLAYERS_ALLOWED = 6;
     public static final int MAX_PLAYER_PLACE = 11;
     List<Player> players = new ArrayList<>();
-    int[] purses  = new int[MAX_PLAYERS_ALLOWED];
 
     Deque<String> popQuestions = new LinkedList<>();
     Deque<String> scienceQuestions = new LinkedList<>();
@@ -41,14 +40,11 @@ public class Game {
         if (players.size() >= MAX_PLAYERS_ALLOWED) {
             throw new IllegalStateException("Max players allowed in game is " + MAX_PLAYERS_ALLOWED);
         }
-        int newPlayerIndex = players.size();
         Player player = new Player(playerName);
         players.add(player);
         if (currentPlayer == null) {
             currentPlayer = player;
         }
-        purses[newPlayerIndex] = 0;
-
         logNewPlayerAdded(playerName);
     }
 
@@ -120,7 +116,7 @@ public class Game {
         if (currentPlayer.isInPenaltyBox()){
             if (isGettingOutOfPenaltyBox) {
                 logCorrectAnswer();
-                purses[currentPlayerIndex]++;
+                currentPlayer.incrementPurse();
                 logCurrentPlayerCoins();
 
                 boolean winner = didPlayerWin();
@@ -133,7 +129,7 @@ public class Game {
             }
         } else {
             logCorrectAnswer();
-            purses[currentPlayerIndex]++;
+            currentPlayer.incrementPurse();
             logCurrentPlayerCoins();
 
             boolean winner = didPlayerWin();
@@ -177,7 +173,7 @@ public class Game {
     private void logCurrentPlayerCoins() {
         System.out.println(currentPlayer.getName()
                 + " now has "
-                + purses[currentPlayerIndex]
+                + currentPlayer.getPurse()
                 + " Gold Coins.");
     }
 
@@ -201,6 +197,6 @@ public class Game {
 
 
     private boolean didPlayerWin() {
-        return !(purses[currentPlayerIndex] == 6);
+        return !(currentPlayer.getPurse() == 6);
     }
 }
