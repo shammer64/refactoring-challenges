@@ -14,7 +14,6 @@ public class Game {
     List<Player> players = new ArrayList<>();
     int[] places = new int[MAX_PLAYERS_ALLOWED];
     int[] purses  = new int[MAX_PLAYERS_ALLOWED];
-    boolean[] inPenaltyBox  = new boolean[MAX_PLAYERS_ALLOWED];
 
     Deque<String> popQuestions = new LinkedList<>();
     Deque<String> scienceQuestions = new LinkedList<>();
@@ -50,7 +49,6 @@ public class Game {
         }
         places[newPlayerIndex] = 0;
         purses[newPlayerIndex] = 0;
-        inPenaltyBox[newPlayerIndex] = false;
 
         logNewPlayerAdded(playerName);
     }
@@ -59,7 +57,7 @@ public class Game {
         logCurrentPlayerName();
         logCurrentRoll(roll);
 
-        if (inPenaltyBox[currentPlayerIndex]) {
+        if (currentPlayer.isInPenaltyBox()) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
 
@@ -110,7 +108,7 @@ public class Game {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (inPenaltyBox[currentPlayerIndex]){
+        if (currentPlayer.isInPenaltyBox()){
             if (isGettingOutOfPenaltyBox) {
                 logCorrectAnswer();
                 purses[currentPlayerIndex]++;
@@ -186,7 +184,7 @@ public class Game {
     public boolean wrongAnswer(){
         System.out.println("Question was incorrectly answered");
         System.out.println(currentPlayer.getName() + " was sent to the penalty box");
-        inPenaltyBox[currentPlayerIndex] = true;
+        currentPlayer.setInPenaltyBox(true);
 
         moveToNextPlayer();
         return true;
