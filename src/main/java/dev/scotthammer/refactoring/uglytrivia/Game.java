@@ -115,7 +115,7 @@ public class Game {
                 return true;
             }
         } else {
-            System.out.println("Answer was corrent!!!!");
+            logCorrectAnswer();
             purses[currentPlayer]++;
             logCurrentPlayerCoins();
 
