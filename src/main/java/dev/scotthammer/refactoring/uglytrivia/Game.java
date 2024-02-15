@@ -22,7 +22,8 @@ public class Game {
     Deque<String> sportsQuestions = new LinkedList<>();
     Deque<String> rockQuestions = new LinkedList<>();
 
-    int currentPlayer = 0;
+    int currentPlayerIndex = 0;
+    Player currentPlayer = null;
     boolean isGettingOutOfPenaltyBox;
 
     public  Game(){
@@ -57,13 +58,13 @@ public class Game {
         logCurrentPlayerName();
         logCurrentRoll(roll);
 
-        if (inPenaltyBox[currentPlayer]) {
+        if (inPenaltyBox[currentPlayerIndex]) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
 
                 logCurrentPlayerLeavingPenaltyBox();
-                places[currentPlayer] = places[currentPlayer] + roll;
-                if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
+                places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
+                if (places[currentPlayerIndex] > 11) places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
 
                 logCurrentPlayerLocation();
                 logCurrentCategory();
@@ -73,8 +74,8 @@ public class Game {
                 isGettingOutOfPenaltyBox = false;
             }
         } else {
-            places[currentPlayer] = places[currentPlayer] + roll;
-            if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
+            places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
+            if (places[currentPlayerIndex] > 11) places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
 
             logCurrentPlayerLocation();
             logCurrentCategory();
@@ -95,23 +96,23 @@ public class Game {
 
 
     private String currentCategory() {
-        if (places[currentPlayer] == 0) return "Pop";
-        if (places[currentPlayer] == 4) return "Pop";
-        if (places[currentPlayer] == 8) return "Pop";
-        if (places[currentPlayer] == 1) return "Science";
-        if (places[currentPlayer] == 5) return "Science";
-        if (places[currentPlayer] == 9) return "Science";
-        if (places[currentPlayer] == 2) return "Sports";
-        if (places[currentPlayer] == 6) return "Sports";
-        if (places[currentPlayer] == 10) return "Sports";
+        if (places[currentPlayerIndex] == 0) return "Pop";
+        if (places[currentPlayerIndex] == 4) return "Pop";
+        if (places[currentPlayerIndex] == 8) return "Pop";
+        if (places[currentPlayerIndex] == 1) return "Science";
+        if (places[currentPlayerIndex] == 5) return "Science";
+        if (places[currentPlayerIndex] == 9) return "Science";
+        if (places[currentPlayerIndex] == 2) return "Sports";
+        if (places[currentPlayerIndex] == 6) return "Sports";
+        if (places[currentPlayerIndex] == 10) return "Sports";
         return "Rock";
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (inPenaltyBox[currentPlayer]){
+        if (inPenaltyBox[currentPlayerIndex]){
             if (isGettingOutOfPenaltyBox) {
                 logCorrectAnswer();
-                purses[currentPlayer]++;
+                purses[currentPlayerIndex]++;
                 logCurrentPlayerCoins();
 
                 boolean winner = didPlayerWin();
@@ -124,7 +125,7 @@ public class Game {
             }
         } else {
             logCorrectAnswer();
-            purses[currentPlayer]++;
+            purses[currentPlayerIndex]++;
             logCurrentPlayerCoins();
 
             boolean winner = didPlayerWin();
@@ -140,11 +141,11 @@ public class Game {
     }
 
     private void logCurrentPlayerLeavingPenaltyBox() {
-        System.out.println(playerNames.get(currentPlayer) + " is getting out of the penalty box");
+        System.out.println(playerNames.get(currentPlayerIndex) + " is getting out of the penalty box");
     }
 
     private void logCurrentPlayerRemainsInPenaltyBox() {
-        System.out.println(playerNames.get(currentPlayer) + " is not getting out of the penalty box");
+        System.out.println(playerNames.get(currentPlayerIndex) + " is not getting out of the penalty box");
     }
 
     private void logCurrentCategory() {
@@ -152,9 +153,9 @@ public class Game {
     }
 
     private void logCurrentPlayerLocation() {
-        System.out.println(playerNames.get(currentPlayer)
+        System.out.println(playerNames.get(currentPlayerIndex)
                 + "'s new location is "
-                + places[currentPlayer]);
+                + places[currentPlayerIndex]);
     }
 
     private void logCurrentRoll(int roll) {
@@ -162,13 +163,13 @@ public class Game {
     }
 
     private void logCurrentPlayerName() {
-        System.out.println(playerNames.get(currentPlayer) + " is the current player");
+        System.out.println(playerNames.get(currentPlayerIndex) + " is the current player");
     }
 
     private void logCurrentPlayerCoins() {
-        System.out.println(playerNames.get(currentPlayer)
+        System.out.println(playerNames.get(currentPlayerIndex)
                 + " now has "
-                + purses[currentPlayer]
+                + purses[currentPlayerIndex]
                 + " Gold Coins.");
     }
 
@@ -177,13 +178,14 @@ public class Game {
     }
 
     private void moveToNextPlayer() {
-        currentPlayer = (currentPlayer + 1) % players.size();
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        currentPlayer = players.get(currentPlayerIndex);
     }
 
     public boolean wrongAnswer(){
         System.out.println("Question was incorrectly answered");
-        System.out.println(playerNames.get(currentPlayer)+ " was sent to the penalty box");
-        inPenaltyBox[currentPlayer] = true;
+        System.out.println(playerNames.get(currentPlayerIndex)+ " was sent to the penalty box");
+        inPenaltyBox[currentPlayerIndex] = true;
 
         moveToNextPlayer();
         return true;
@@ -191,6 +193,6 @@ public class Game {
 
 
     private boolean didPlayerWin() {
-        return !(purses[currentPlayer] == 6);
+        return !(purses[currentPlayerIndex] == 6);
     }
 }
