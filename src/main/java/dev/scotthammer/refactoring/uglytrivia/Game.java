@@ -44,29 +44,26 @@ public class Game {
         purses[numPlayers] = 0;
         inPenaltyBox[numPlayers] = false;
 
-        System.out.println(playerName + " was added");
-        System.out.println("They are player number " + players.size());
+        logNewPlayerAdded(playerName);
     }
 
     public void roll(int roll) {
-        System.out.println(players.get(currentPlayer) + " is the current player");
-        System.out.println("They have rolled a " + roll);
+        logCurrentPlayerName();
+        logCurrentRoll(roll);
 
         if (inPenaltyBox[currentPlayer]) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
 
-                System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
+                logCurrentPlayerLeavingPenaltyBox();
                 places[currentPlayer] = places[currentPlayer] + roll;
                 if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
-                System.out.println(players.get(currentPlayer)
-                        + "'s new location is "
-                        + places[currentPlayer]);
-                System.out.println("The category is " + currentCategory());
+                logCurrentPlayerLocation();
+                logCurrentCategory();
                 askQuestion();
             } else {
-                System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
+                logCurrentPlayerRemainsInPenaltyBox();
                 isGettingOutOfPenaltyBox = false;
             }
 
@@ -75,10 +72,8 @@ public class Game {
             places[currentPlayer] = places[currentPlayer] + roll;
             if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
-            System.out.println(players.get(currentPlayer)
-                    + "'s new location is "
-                    + places[currentPlayer]);
-            System.out.println("The category is " + currentCategory());
+            logCurrentPlayerLocation();
+            logCurrentCategory();
             askQuestion();
         }
 
@@ -112,12 +107,9 @@ public class Game {
     public boolean wasCorrectlyAnswered() {
         if (inPenaltyBox[currentPlayer]){
             if (isGettingOutOfPenaltyBox) {
-                System.out.println("Answer was correct!!!!");
+                logCorrectAnswer();
                 purses[currentPlayer]++;
-                System.out.println(players.get(currentPlayer)
-                        + " now has "
-                        + purses[currentPlayer]
-                        + " Gold Coins.");
+                logCurrentPlayerCoins();
 
                 boolean winner = didPlayerWin();
                 moveToNextPlayer();
@@ -134,16 +126,55 @@ public class Game {
 
             System.out.println("Answer was corrent!!!!");
             purses[currentPlayer]++;
-            System.out.println(players.get(currentPlayer)
-                    + " now has "
-                    + purses[currentPlayer]
-                    + " Gold Coins.");
+            logCurrentPlayerCoins();
 
             boolean winner = didPlayerWin();
             moveToNextPlayer();
 
             return winner;
         }
+    }
+
+    private void logNewPlayerAdded(String playerName) {
+        System.out.println(playerName + " was added");
+        System.out.println("They are player number " + players.size());
+    }
+
+    private void logCurrentPlayerLeavingPenaltyBox() {
+        System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
+    }
+
+    private void logCurrentPlayerRemainsInPenaltyBox() {
+        System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
+    }
+
+    private void logCurrentCategory() {
+        System.out.println("The category is " + currentCategory());
+    }
+
+    private void logCurrentPlayerLocation() {
+        System.out.println(players.get(currentPlayer)
+                + "'s new location is "
+                + places[currentPlayer]);
+    }
+
+    private void logCurrentRoll(int roll) {
+        System.out.println("They have rolled a " + roll);
+    }
+
+    private void logCurrentPlayerName() {
+        System.out.println(players.get(currentPlayer) + " is the current player");
+    }
+
+    private void logCurrentPlayerCoins() {
+        System.out.println(players.get(currentPlayer)
+                + " now has "
+                + purses[currentPlayer]
+                + " Gold Coins.");
+    }
+
+    private void logCorrectAnswer() {
+        System.out.println("Answer was correct!!!!");
     }
 
     private void moveToNextPlayer() {
