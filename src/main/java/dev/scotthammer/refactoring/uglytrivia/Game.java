@@ -11,7 +11,8 @@ import java.util.List;
 public class Game {
     public static final int MIN_PLAYERS_REQUIRED = 2;
     public static final int MAX_PLAYERS_ALLOWED = 6;
-    List<String> players = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
+    List<String> playerNames = new ArrayList<>();
     int[] places = new int[MAX_PLAYERS_ALLOWED];
     int[] purses  = new int[MAX_PLAYERS_ALLOWED];
     boolean[] inPenaltyBox  = new boolean[MAX_PLAYERS_ALLOWED];
@@ -34,15 +35,17 @@ public class Game {
     }
 
     public boolean isPlayable() {
-        return (players.size() >= MIN_PLAYERS_REQUIRED);
+        return (playerNames.size() >= MIN_PLAYERS_REQUIRED);
     }
 
     public void add(String playerName) {
-        if (players.size() == MAX_PLAYERS_ALLOWED) {
+        if (playerNames.size() == MAX_PLAYERS_ALLOWED) {
             throw new IllegalStateException("Max players allowed in game is " + MAX_PLAYERS_ALLOWED);
         }
-        int newPlayerIndex = players.size();
-        players.add(playerName);
+        Player player = new Player(playerName);
+        players.add(player);
+        int newPlayerIndex = playerNames.size();
+        playerNames.add(playerName);
         places[newPlayerIndex] = 0;
         purses[newPlayerIndex] = 0;
         inPenaltyBox[newPlayerIndex] = false;
@@ -133,15 +136,15 @@ public class Game {
 
     private void logNewPlayerAdded(String playerName) {
         System.out.println(playerName + " was added");
-        System.out.println("They are player number " + players.size());
+        System.out.println("They are player number " + playerNames.size());
     }
 
     private void logCurrentPlayerLeavingPenaltyBox() {
-        System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
+        System.out.println(playerNames.get(currentPlayer) + " is getting out of the penalty box");
     }
 
     private void logCurrentPlayerRemainsInPenaltyBox() {
-        System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
+        System.out.println(playerNames.get(currentPlayer) + " is not getting out of the penalty box");
     }
 
     private void logCurrentCategory() {
@@ -149,7 +152,7 @@ public class Game {
     }
 
     private void logCurrentPlayerLocation() {
-        System.out.println(players.get(currentPlayer)
+        System.out.println(playerNames.get(currentPlayer)
                 + "'s new location is "
                 + places[currentPlayer]);
     }
@@ -159,11 +162,11 @@ public class Game {
     }
 
     private void logCurrentPlayerName() {
-        System.out.println(players.get(currentPlayer) + " is the current player");
+        System.out.println(playerNames.get(currentPlayer) + " is the current player");
     }
 
     private void logCurrentPlayerCoins() {
-        System.out.println(players.get(currentPlayer)
+        System.out.println(playerNames.get(currentPlayer)
                 + " now has "
                 + purses[currentPlayer]
                 + " Gold Coins.");
@@ -174,12 +177,12 @@ public class Game {
     }
 
     private void moveToNextPlayer() {
-        currentPlayer = (currentPlayer + 1) % players.size();
+        currentPlayer = (currentPlayer + 1) % playerNames.size();
     }
 
     public boolean wrongAnswer(){
         System.out.println("Question was incorrectly answered");
-        System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
+        System.out.println(playerNames.get(currentPlayer)+ " was sent to the penalty box");
         inPenaltyBox[currentPlayer] = true;
 
         moveToNextPlayer();
