@@ -14,6 +14,7 @@ public class Game {
     public static final int MAX_PLAYER_PLACE = 11;
     List<Player> players = new ArrayList<>();
 
+    private final QuestionBank questionBank = new QuestionBank();
     Deque<String> popQuestions = new LinkedList<>();
     Deque<String> scienceQuestions = new LinkedList<>();
     Deque<String> sportsQuestions = new LinkedList<>();
@@ -85,14 +86,12 @@ public class Game {
     }
 
     private void askQuestion() {
-        if (currentCategory().equals("Pop"))
-            System.out.println(popQuestions.removeFirst());
-        if (currentCategory().equals("Science"))
-            System.out.println(scienceQuestions.removeFirst());
-        if (currentCategory().equals("Sports"))
-            System.out.println(sportsQuestions.removeFirst());
-        if (currentCategory().equals("Rock"))
-            System.out.println(rockQuestions.removeFirst());
+        switch (currentCategory()) {
+            case "Pop" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Pop));
+            case "Science" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Science));
+            case "Sports" -> System.out.println(sportsQuestions.removeFirst());
+            case "Rock" -> System.out.println(rockQuestions.removeFirst());
+        }
     }
 
 
