@@ -96,7 +96,7 @@ public class Game {
                 currentPlayer.incrementPurse();
                 logCurrentPlayerCoins();
                 moveToNextPlayer();
-                return stillNoWinner();
+                return notAWinner();
             } else {
                 moveToNextPlayer();
                 return true;
@@ -106,7 +106,7 @@ public class Game {
             currentPlayer.incrementPurse();
             logCurrentPlayerCoins();
             moveToNextPlayer();
-            return stillNoWinner();
+            return notAWinner();
         }
     }
 
@@ -168,7 +168,7 @@ public class Game {
     }
 
 
-    private boolean stillNoWinner() {
+    private boolean notAWinner() {
         return !(currentPlayer.getPurse() == 6);
     }
 }
