@@ -3,9 +3,8 @@ package dev.scotthammer.refactoring.uglytrivia;
     Credit to JB Rainsberger for the code provided at https://github.com/jbrains/trivia
     License: GPLv3 https://github.com/jbrains/trivia/blob/master/LICENSE.txt
  */
+
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Game {
@@ -44,27 +43,34 @@ public class Game {
         logCurrentRoll(roll);
 
         if (currentPlayer.isInPenaltyBox()) {
-            if (roll % 2 != 0) {
-                isGettingOutOfPenaltyBox = true;
-                logCurrentPlayerLeavingPenaltyBox();
-                addRollToPlace(roll);
-                if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
-                    resetPlace();
-                logCurrentPlayerLocation();
-                logCurrentCategory();
-                askQuestion();
-            } else {
-                logCurrentPlayerRemainsInPenaltyBox();
-                isGettingOutOfPenaltyBox = false;
-            }
+            handleRollForPlayerInPenaltyBox(roll);
         } else {
-            addRollToPlace(roll);
-            if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
-                resetPlace();
-            logCurrentPlayerLocation();
-            logCurrentCategory();
-            askQuestion();
+            handleRollForPlayer(roll);
         }
+    }
+
+    private void handleRollForPlayer(int roll) {
+        addRollToPlace(roll);
+        if (currentPlayer.getPlace() > MAX_PLAYER_PLACE)
+            resetPlace();
+        logCurrentPlayerLocation();
+        logCurrentCategory();
+        askQuestion();
+    }
+
+    private void handleRollForPlayerInPenaltyBox(int roll) {
+        if (isEvenRoll(roll)) {
+            isGettingOutOfPenaltyBox = true;
+            logCurrentPlayerLeavingPenaltyBox();
+            handleRollForPlayer(roll);
+        } else {
+            logCurrentPlayerRemainsInPenaltyBox();
+            isGettingOutOfPenaltyBox = false;
+        }
+    }
+
+    private boolean isEvenRoll(int roll) {
+        return roll % 2 != 0;
     }
 
     private void addRollToPlace(int roll) {
