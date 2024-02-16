@@ -36,6 +36,26 @@ class QuestionBankTest {
     }
 
     @Test
+    void shouldProvideRockQuestion() {
+        assertEquals("Rock Question 0", qBank.pop(QuestionType.Rock).toString());
+    }
+    @Test
+    void shouldProvideTwoRockQuestions() {
+        qBank.pop(QuestionType.Rock);
+        assertEquals("Rock Question 1", qBank.pop(QuestionType.Rock).toString());
+    }
+
+    @Test
+    void shouldProvideSportsQuestion() {
+        assertEquals("Sports Question 0", qBank.pop(QuestionType.Sports).toString());
+    }
+    @Test
+    void shouldProvideTwoSportsQuestions() {
+        qBank.pop(QuestionType.Sports);
+        assertEquals("Sports Question 1", qBank.pop(QuestionType.Sports).toString());
+    }
+
+    @Test
     void shouldHaveDifferentCounterPerQuestionType() {
         assertEquals("Pop Question 0", qBank.pop(QuestionType.Pop).toString());
         assertEquals("Science Question 0", qBank.pop(QuestionType.Science).toString());
