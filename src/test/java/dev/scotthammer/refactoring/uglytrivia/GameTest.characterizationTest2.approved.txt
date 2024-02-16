@@ -1,0 +1,230 @@
+Scott was added
+They are player number 1
+Barney was added
+They are player number 2
+Fred was added
+They are player number 3
+Wilma was added
+They are player number 4
+Betty was added
+They are player number 5
+Scott is the current player
+They have rolled a 1
+Scott's new location is 1
+The category is Science
+Science Question 0
+Answer was correct!!!!
+Scott now has 1 Gold Coins.
+Barney is the current player
+They have rolled a 2
+Barney's new location is 2
+The category is Sports
+Sports Question 0
+Answer was correct!!!!
+Barney now has 1 Gold Coins.
+Fred is the current player
+They have rolled a 3
+Fred's new location is 3
+The category is Rock
+Rock Question 0
+Answer was correct!!!!
+Fred now has 1 Gold Coins.
+Wilma is the current player
+They have rolled a 4
+Wilma's new location is 4
+The category is Pop
+Pop Question 0
+Answer was correct!!!!
+Wilma now has 1 Gold Coins.
+Betty is the current player
+They have rolled a 5
+Betty's new location is 5
+The category is Science
+Science Question 1
+Answer was correct!!!!
+Betty now has 1 Gold Coins.
+Scott is the current player
+They have rolled a 6
+Scott's new location is 7
+The category is Rock
+Rock Question 1
+Answer was correct!!!!
+Scott now has 2 Gold Coins.
+Barney is the current player
+They have rolled a 1
+Barney's new location is 3
+The category is Rock
+Rock Question 2
+Answer was correct!!!!
+Barney now has 2 Gold Coins.
+Fred is the current player
+They have rolled a 2
+Fred's new location is 5
+The category is Science
+Science Question 2
+Question was incorrectly answered
+Fred was sent to the penalty box
+Wilma is the current player
+They have rolled a 3
+Wilma's new location is 7
+The category is Rock
+Rock Question 3
+Answer was correct!!!!
+Wilma now has 2 Gold Coins.
+Betty is the current player
+They have rolled a 4
+Betty's new location is 9
+The category is Science
+Science Question 3
+Answer was correct!!!!
+Betty now has 2 Gold Coins.
+Scott is the current player
+They have rolled a 5
+Scott's new location is 0
+The category is Pop
+Pop Question 1
+Answer was correct!!!!
+Scott now has 3 Gold Coins.
+Barney is the current player
+They have rolled a 6
+Barney's new location is 9
+The category is Science
+Science Question 4
+Answer was correct!!!!
+Barney now has 3 Gold Coins.
+Fred is the current player
+They have rolled a 1
+Fred is getting out of the penalty box
+Fred's new location is 6
+The category is Sports
+Sports Question 1
+Answer was correct!!!!
+Fred now has 2 Gold Coins.
+Wilma is the current player
+They have rolled a 2
+Wilma's new location is 9
+The category is Science
+Science Question 5
+Answer was correct!!!!
+Wilma now has 3 Gold Coins.
+Betty is the current player
+They have rolled a 3
+Betty's new location is 0
+The category is Pop
+Pop Question 2
+Answer was correct!!!!
+Betty now has 3 Gold Coins.
+Scott is the current player
+They have rolled a 4
+Scott's new location is 4
+The category is Pop
+Pop Question 3
+Answer was correct!!!!
+Scott now has 4 Gold Coins.
+Barney is the current player
+They have rolled a 5
+Barney's new location is 2
+The category is Sports
+Sports Question 2
+Question was incorrectly answered
+Barney was sent to the penalty box
+Fred is the current player
+They have rolled a 6
+Fred is not getting out of the penalty box
+Wilma is the current player
+They have rolled a 1
+Wilma's new location is 10
+The category is Sports
+Sports Question 3
+Answer was correct!!!!
+Wilma now has 4 Gold Coins.
+Betty is the current player
+They have rolled a 2
+Betty's new location is 2
+The category is Sports
+Sports Question 4
+Answer was correct!!!!
+Betty now has 4 Gold Coins.
+Scott is the current player
+They have rolled a 3
+Scott's new location is 7
+The category is Rock
+Rock Question 4
+Answer was correct!!!!
+Scott now has 5 Gold Coins.
+Barney is the current player
+They have rolled a 4
+Barney is not getting out of the penalty box
+Fred is the current player
+They have rolled a 5
+Fred is getting out of the penalty box
+Fred's new location is 11
+The category is Rock
+Rock Question 5
+Answer was correct!!!!
+Fred now has 3 Gold Coins.
+Wilma is the current player
+They have rolled a 6
+Wilma's new location is 4
+The category is Pop
+Pop Question 4
+Answer was correct!!!!
+Wilma now has 5 Gold Coins.
+Betty is the current player
+They have rolled a 1
+Betty's new location is 3
+The category is Rock
+Rock Question 6
+Answer was correct!!!!
+Betty now has 5 Gold Coins.
+Scott is the current player
+They have rolled a 2
+Scott's new location is 9
+The category is Science
+Science Question 6
+Question was incorrectly answered
+Scott was sent to the penalty box
+Barney is the current player
+They have rolled a 3
+Barney is getting out of the penalty box
+Barney's new location is 5
+The category is Science
+Science Question 7
+Answer was correct!!!!
+Barney now has 4 Gold Coins.
+Fred is the current player
+They have rolled a 4
+Fred is not getting out of the penalty box
+Wilma is the current player
+They have rolled a 5
+Wilma's new location is 9
+The category is Science
+Science Question 8
+Answer was correct!!!!
+Wilma now has 6 Gold Coins.
+Betty is the current player
+They have rolled a 6
+Betty's new location is 9
+The category is Science
+Science Question 9
+Answer was correct!!!!
+Betty now has 6 Gold Coins.
+Scott is the current player
+They have rolled a 1
+Scott is getting out of the penalty box
+Scott's new location is 10
+The category is Sports
+Sports Question 5
+Answer was correct!!!!
+Scott now has 6 Gold Coins.
+Barney is the current player
+They have rolled a 2
+Barney is not getting out of the penalty box
+Fred is the current player
+They have rolled a 3
+Fred is getting out of the penalty box
+Fred's new location is 2
+The category is Sports
+Sports Question 6
+Answer was correct!!!!
+Fred now has 4 Gold Coins.
