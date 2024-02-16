@@ -85,7 +85,7 @@ public class Game {
 
     private void askQuestion() {
         int ordinal = currentPlayer.getPlace() % 4;
-        System.out.println(questionBank.pop(QuestionType.values()[ordinal]));
+        System.out.println(questionBank.pop(Topic.values()[ordinal]));
     }
 
 
@@ -125,7 +125,7 @@ public class Game {
 
     private void logCurrentCategory() {
         int ordinal = currentPlayer.getPlace() % 4;
-        System.out.println("The category is " + QuestionType.values()[ordinal]);
+        System.out.println("The category is " + Topic.values()[ordinal]);
     }
 
     private void logCurrentPlayerLocation() {

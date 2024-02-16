@@ -4,19 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class QuestionBank {
-    private final Map<QuestionType, Integer> indices = new HashMap<>();
+    private final Map<Topic, Integer> indices = new HashMap<>();
 
-    public Question pop(QuestionType questionType) {
-        int index = indices.getOrDefault(questionType, 0);
-        indices.put(questionType, index + 1);
-        return new Question(questionType, index);
+    public Question pop(Topic topic) {
+        int index = indices.getOrDefault(topic, 0);
+        indices.put(topic, index + 1);
+        return new Question(topic, index);
     }
 
     public static class Question {
         private final String text;
 
-        public Question(QuestionType questionType, int index) {
-            this.text = questionType + " Question " + index;
+        public Question(Topic topic, int index) {
+            this.text = topic + " Question " + index;
         }
 
         @Override
@@ -25,7 +25,7 @@ public class QuestionBank {
         }
     }
 
-    public enum QuestionType {
+    public enum Topic {
         Pop, Science, Sports, Rock
     }
 }

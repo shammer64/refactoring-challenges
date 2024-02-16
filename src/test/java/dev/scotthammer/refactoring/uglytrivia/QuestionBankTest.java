@@ -17,48 +17,48 @@ class QuestionBankTest {
 
     @Test
     void shouldProvidePopQuestion() {
-         assertEquals("Pop Question 0", qBank.pop(QuestionType.Pop).toString());
+         assertEquals("Pop Question 0", qBank.pop(Topic.Pop).toString());
     }
     @Test
     void shouldProvideTwoPopQuestions() {
-        qBank.pop(QuestionType.Pop);
-        assertEquals("Pop Question 1", qBank.pop(QuestionType.Pop).toString());
+        qBank.pop(Topic.Pop);
+        assertEquals("Pop Question 1", qBank.pop(Topic.Pop).toString());
     }
 
     @Test
     void shouldProvideScienceQuestion() {
-        assertEquals("Science Question 0", qBank.pop(QuestionType.Science).toString());
+        assertEquals("Science Question 0", qBank.pop(Topic.Science).toString());
     }
     @Test
     void shouldProvideTwoScienceQuestions() {
-        qBank.pop(QuestionType.Science);
-        assertEquals("Science Question 1", qBank.pop(QuestionType.Science).toString());
+        qBank.pop(Topic.Science);
+        assertEquals("Science Question 1", qBank.pop(Topic.Science).toString());
     }
 
     @Test
     void shouldProvideRockQuestion() {
-        assertEquals("Rock Question 0", qBank.pop(QuestionType.Rock).toString());
+        assertEquals("Rock Question 0", qBank.pop(Topic.Rock).toString());
     }
     @Test
     void shouldProvideTwoRockQuestions() {
-        qBank.pop(QuestionType.Rock);
-        assertEquals("Rock Question 1", qBank.pop(QuestionType.Rock).toString());
+        qBank.pop(Topic.Rock);
+        assertEquals("Rock Question 1", qBank.pop(Topic.Rock).toString());
     }
 
     @Test
     void shouldProvideSportsQuestion() {
-        assertEquals("Sports Question 0", qBank.pop(QuestionType.Sports).toString());
+        assertEquals("Sports Question 0", qBank.pop(Topic.Sports).toString());
     }
     @Test
     void shouldProvideTwoSportsQuestions() {
-        qBank.pop(QuestionType.Sports);
-        assertEquals("Sports Question 1", qBank.pop(QuestionType.Sports).toString());
+        qBank.pop(Topic.Sports);
+        assertEquals("Sports Question 1", qBank.pop(Topic.Sports).toString());
     }
 
     @Test
     void shouldHaveDifferentCounterPerQuestionType() {
-        assertEquals("Pop Question 0", qBank.pop(QuestionType.Pop).toString());
-        assertEquals("Science Question 0", qBank.pop(QuestionType.Science).toString());
+        assertEquals("Pop Question 0", qBank.pop(Topic.Pop).toString());
+        assertEquals("Science Question 0", qBank.pop(Topic.Science).toString());
     }
 
 }
