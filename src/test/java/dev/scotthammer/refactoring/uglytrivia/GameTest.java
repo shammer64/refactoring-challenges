@@ -31,6 +31,32 @@ class GameTest {
     }
 
     @Test
+    void characterizationTest2() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        Game aGame = new Game();
+        aGame.add("Scott");
+        aGame.add("Barney");
+        aGame.add("Fred");
+        aGame.add("Wilma");
+        aGame.add("Betty");
+
+        boolean noWinner;
+        int turnNumber = 0;
+        do {
+            aGame.roll(turnNumber % 6 + 1);
+            if (turnNumber % 9 == 7) {
+                noWinner = aGame.wrongAnswer();
+            } else {
+                noWinner = aGame.wasCorrectlyAnswered();
+            }
+            turnNumber++;
+        } while (noWinner);
+
+        Approvals.verify(outputStream.toString());
+    }
+
+    @Test
     void singlePlayerGameNotPlayable() {
         Game aGame = new Game();
         aGame.add("Chet");
