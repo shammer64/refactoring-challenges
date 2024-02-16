@@ -15,22 +15,12 @@ public class Game {
     List<Player> players = new ArrayList<>();
 
     private final QuestionBank questionBank = new QuestionBank();
-    Deque<String> popQuestions = new LinkedList<>();
-    Deque<String> scienceQuestions = new LinkedList<>();
-    Deque<String> sportsQuestions = new LinkedList<>();
-    Deque<String> rockQuestions = new LinkedList<>();
-
     int currentPlayerIndex = 0;
     Player currentPlayer = null;
     boolean isGettingOutOfPenaltyBox;
 
     public Game(){
-        for (int i = 0; i < 50; i++) {
-            popQuestions.addLast("Pop Question " + i);
-            scienceQuestions.addLast("Science Question " + i);
-            sportsQuestions.addLast("Sports Question " + i);
-            rockQuestions.addLast("Rock Question " + i);
-        }
+
     }
 
     public boolean isPlayable() {
@@ -89,8 +79,8 @@ public class Game {
         switch (currentCategory()) {
             case "Pop" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Pop));
             case "Science" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Science));
-            case "Sports" -> System.out.println(sportsQuestions.removeFirst());
-            case "Rock" -> System.out.println(rockQuestions.removeFirst());
+            case "Sports" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Sports));
+            case "Rock" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Rock));
         }
     }
 
