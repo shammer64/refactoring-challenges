@@ -7,6 +7,8 @@ package dev.scotthammer.refactoring.uglytrivia;
 import java.util.ArrayList;
 import java.util.List;
 
+import static dev.scotthammer.refactoring.uglytrivia.QuestionBank.*;
+
 public class Game {
     public static final int MIN_PLAYERS_REQUIRED = 2;
     public static final int MAX_PLAYERS_ALLOWED = 6;
@@ -82,27 +84,10 @@ public class Game {
     }
 
     private void askQuestion() {
-        switch (currentCategory()) {
-            case "Pop" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Pop));
-            case "Science" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Science));
-            case "Sports" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Sports));
-            case "Rock" -> System.out.println(questionBank.pop(QuestionBank.QuestionType.Rock));
-        }
+        int ordinal = currentPlayer.getPlace() % 4;
+        System.out.println(questionBank.pop(QuestionType.values()[ordinal]));
     }
 
-
-    private String currentCategory() {
-        if (currentPlayer.getPlace() == 0) return "Pop";
-        if (currentPlayer.getPlace() == 4) return "Pop";
-        if (currentPlayer.getPlace() == 8) return "Pop";
-        if (currentPlayer.getPlace() == 1) return "Science";
-        if (currentPlayer.getPlace() == 5) return "Science";
-        if (currentPlayer.getPlace() == 9) return "Science";
-        if (currentPlayer.getPlace() == 2) return "Sports";
-        if (currentPlayer.getPlace() == 6) return "Sports";
-        if (currentPlayer.getPlace() == 10) return "Sports";
-        return "Rock";
-    }
 
     public boolean wasCorrectlyAnswered() {
         if (currentPlayer.isInPenaltyBox()){
@@ -139,7 +124,8 @@ public class Game {
     }
 
     private void logCurrentCategory() {
-        System.out.println("The category is " + currentCategory());
+        int ordinal = currentPlayer.getPlace() % 4;
+        System.out.println("The category is " + QuestionType.values()[ordinal]);
     }
 
     private void logCurrentPlayerLocation() {

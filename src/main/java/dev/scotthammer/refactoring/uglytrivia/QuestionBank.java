@@ -26,6 +26,6 @@ public class QuestionBank {
     }
 
     public enum QuestionType {
-        Science, Rock, Sports, Pop
+        Pop, Science, Sports, Rock
     }
 }
